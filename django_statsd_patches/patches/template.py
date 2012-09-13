@@ -29,7 +29,7 @@ def new_render(self, context):
 
 
 def patch():
-    if getattr(Template, '__patched', False):
+    if not getattr(Template, '__patched', False):
         return
     # Monkey patch Django
     Template.__patched = True
