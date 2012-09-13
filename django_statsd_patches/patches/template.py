@@ -8,14 +8,14 @@ def key_for_template_name(name):
     return name.replace('/', '.')[:-5]
 
 
-def new_template_init(self, **kwargs):
-    key = key_for_template_name(kwargs.get('name', ''))
+def new_template_init(self, template_string, origin=None, name='<Unknown Template>'):
+    key = key_for_template_name(name)
     if key is None:
-        return self._old_init(**kwargs)
+        return self._old_init(template_string, origin, name)
 
     # We've got a key, so time the template parsing
     with statsd.timer('template.{0}.parse'.format(key)):
-        return self._old_init(**kwargs)
+        return self._old_init(template_string, origin, name)
 
 
 def new_render(self, context):
@@ -29,7 +29,7 @@ def new_render(self, context):
 
 
 def patch():
-    if not getattr(Template, '__patched', False):
+    if getattr(Template, '__patched', False):
         return
     # Monkey patch Django
     Template.__patched = True
