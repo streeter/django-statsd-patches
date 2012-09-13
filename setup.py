@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='django-statsd-patches',
-    version='0.0.1',
+    version='0.0.2',
     description='Patch and time some additional django libraries',
     long_description=open('README.rst').read(),
     author='Chris Streeter',

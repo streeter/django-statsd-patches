@@ -1,5 +1,8 @@
 from django.template import Template
 from django_statsd.clients import statsd
+from django.conf import settings
+
+SAMPLE_RATE = getattr(settings, 'STATSD_TEMPLATE_SAMPLE_RATE', 1)
 
 
 def key_for_template_name(name):
@@ -14,7 +17,7 @@ def new_template_init(self, template_string, origin=None, name='<Unknown Templat
         return self._old_init(template_string, origin, name)
 
     # We've got a key, so time the template parsing
-    with statsd.timer('template.{0}.parse'.format(key)):
+    with statsd.timer('template.{0}.parse'.format(key), rate=SAMPLE_RATE):
         return self._old_init(template_string, origin, name)
 
 
@@ -24,13 +27,14 @@ def new_render(self, context):
         return self._old_render(context)
 
     # We've got a key, so time the template parsing
-    with statsd.timer('template.{0}.render'.format(key)):
+    with statsd.timer('template.{0}.render'.format(key), rate=SAMPLE_RATE):
         return self._old_render(context)
 
 
 def patch():
     if getattr(Template, '__patched', False):
         return
+
     # Monkey patch Django
     Template.__patched = True
 
