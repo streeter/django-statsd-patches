@@ -18,7 +18,7 @@ def new_execute_command(self, *args, **options):
 def patch():
     if not REDIS_AVAILABLE:
         return
-    if not getattr(StrictRedis, '__patched', False):
+    if getattr(StrictRedis, '__patched', False):
         return
 
     # Monkey patch Redis

@@ -24,7 +24,7 @@ add the following to your settings.py::
 
         STATSD_PATCHES = [
                 'django_statsd_patches.patches.template',
-                'django_statsd_patches.patches.redis',
+                'django_statsd_patches.patches.redis_timing',
         ]
 
 
