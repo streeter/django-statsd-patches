@@ -41,6 +41,10 @@ Then you'll get sampling of the calls.
 Changes
 -------
 
+0.0.3:
+
+- Updated setup.py
+
 0.0.2:
 
 - Added `STATSD_REDIS_SAMPLE_RATE` and `STATSD_TEMPLATE_SAMPLE_RATE`
