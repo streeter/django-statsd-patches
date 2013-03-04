@@ -54,5 +54,11 @@ Changes
 
 - First version
 
+License
+-------
+
+Uses the `MIT`_ license.
+
 
 .. _django-statsd-mozilla: https://github.com/andymckay/django-statsd
+.. _MIT: http://opensource.org/licenses/MIT
