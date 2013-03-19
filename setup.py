@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-version = '0.0.3'
+version = '0.0.4'
 
 import os
 import sys
@@ -50,5 +50,5 @@ setup(
         'Programming Language :: Python',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Software Development :: Libraries :: Python Modules',
-        ],
-    )
+    ],
+)
