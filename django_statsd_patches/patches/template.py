@@ -6,7 +6,7 @@ SAMPLE_RATE = getattr(settings, 'STATSD_TEMPLATE_SAMPLE_RATE', 1)
 
 
 def key_for_template_name(name):
-    if not name.endswith('.html'):
+    if not name or not name.endswith('.html'):
         return None
     return name.replace('/', '.')[:-5]
 
