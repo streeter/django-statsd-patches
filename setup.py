@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-version = '0.0.5'
+version = '0.0.6'
 
 import os
 import sys
