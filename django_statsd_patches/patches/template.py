@@ -11,14 +11,17 @@ def key_for_template_name(name):
     return name.replace('/', '.')[:-5]
 
 
-def new_template_init(self, template_string, origin=None, name='<Unknown Template>'):
-    key = key_for_template_name(name)
+def new_template_init(self, *args, **kwargs):
+    if len(args) >= 3:
+        key = key_for_template_name(args[2])
+    else:
+        key = key_for_template_name(kwargs.get('name', '<Unknown Template>'))
     if key is None:
-        return self._old_init(template_string, origin, name)
+        return self._old_init(*args, **kwargs)
 
     # We've got a key, so time the template parsing
     with statsd.timer('template.{0}.parse'.format(key), rate=SAMPLE_RATE):
-        return self._old_init(template_string, origin, name)
+        return self._old_init(*args, **kwargs)
 
 
 def new_render(self, context):
